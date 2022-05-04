@@ -8,12 +8,14 @@ import {
   Box,
 } from "@mui/material";
 import { FC } from "react";
+import { TweetData } from "../../../api/TweetData";
 import { UncountableData } from "../../../api/UncountableData";
 import Description from "../../molecules/Description";
+import KVPTable from "../../molecules/KVPTable";
 import DataTable from "../../organisms/DataTable";
 
 const Data: FC = () => {
-  const data = UncountableData.getAnnotatedKVPData();
+  const data = TweetData.getAnnotatedTweets();
 
   return (
     <Container
@@ -23,13 +25,13 @@ const Data: FC = () => {
     >
       <Box sx={{mb: 2}}>
         <Description
-          title="Data"
+          title="CNN Tweets"
           titleSize="md"
-          description="JSON file entries into table format"
+          description="CNN Tweet JSON file entries into table format"
         />
       </Box>
       {data.map((datum) => {
-        const { name, inputs, outputs } = datum;
+        const { name, data} = datum;
         return (
           <Accordion key={name}>
             <AccordionSummary
@@ -42,10 +44,11 @@ const Data: FC = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <DataTable
+              <KVPTable title={name} data={data}/>
+              {/* <DataTable
                 inputTable={{ title: "Inputs", data: inputs }}
                 outputTable={{ title: "Outputs", data: outputs }}
-              />
+              /> */}
             </AccordionDetails>
           </Accordion>
         );

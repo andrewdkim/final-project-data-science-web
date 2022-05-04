@@ -17,7 +17,7 @@ export interface KVPTableProps {
 
 interface KVP {
   key: string;
-  value: string;
+  value: string | number | number[]  | string[];
 }
 
 const KVPTable: FC<KVPTableProps> = (props) => {
