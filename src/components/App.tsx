@@ -2,8 +2,7 @@ import { Box, Container } from "@mui/material";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Menu from "./organisms/Menu";
-import Data from "./pages/Data";
-import Graph from "./pages/Graph";
+import Main from "./pages/Main";
 
 function App() {
   return (
@@ -15,8 +14,7 @@ function App() {
         <Router>
           <Menu />
           <Routes>
-            <Route path="/" element={<Graph />}></Route>
-            <Route path="/data" element={<Data />}></Route>
+            <Route path="/" element={<Main />}></Route>
           </Routes>
         </Router>
       </Container>

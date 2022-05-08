@@ -1,6 +1,7 @@
 import { Point } from "../types";
 const cnn_replies = require("../cnn_replies_clean.json")
-
+const hypothesis1Data = require("../hypothesis1.json")
+const hypothesis3Data = require("../hypothesis3.json")
 export type typeOfData = "inputs" | "outputs";
 
 
@@ -66,6 +67,24 @@ interface AnnotatedKVPTable {
 }
 
 export namespace TweetData {
+
+  export const getHypothesisKeywords = (type: "hypothesis1" | "hypothesis3") => {
+    switch (type) {
+      case "hypothesis1":
+        return Object.keys(hypothesis1Data)
+      case "hypothesis3":
+        return Object.keys(hypothesis3Data)
+    }
+  }
+
+  export const getHypothesisKeywordStats = (type: "hypothesis1" | "hypothesis3", keyword: string) => {
+    switch (type) {
+      case "hypothesis1":
+        return hypothesis1Data[keyword]
+      case "hypothesis3":
+        return hypothesis3Data[keyword]
+    }
+  }
 
   export const parseTweets = () => {
      // "url": "https://twitter.com/CNN/status/1223028844300554248",
