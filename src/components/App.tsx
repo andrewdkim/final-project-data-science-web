@@ -12,7 +12,7 @@ function App() {
         maxWidth="lg"
       >
         <Router>
-          <Menu />
+          {/* <Menu /> */}
           <Routes>
             <Route path="/" element={<Main />}></Route>
           </Routes>

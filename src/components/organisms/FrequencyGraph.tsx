@@ -1,4 +1,4 @@
-import { Autocomplete, Chip, TextField } from '@mui/material';
+import { Autocomplete, Box, Chip, TextField, Typography } from '@mui/material';
 import {FC, useState} from 'react';
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { TweetData } from '../../api/TweetData';
@@ -28,6 +28,15 @@ const FrequencyGraph:FC<FrequencyGraphProps> = (props) => {
 
   return ( 
     <InteractiveComponentWrapper>
+      <Box sx={{mb: 5}}>
+        <Typography variant="h4"  sx={{fontWeight: 700, display:"flex", alignItems:"center" }}>
+          {type === "CNN" ? "CNN's Monthly # of Keywords Mentioned" : "FOX's Monthly # of Keywords Mentioned"}
+        </Typography>
+        <Typography variant="body1" color="secondary"  sx={{display:"flex", alignItems:"center" }}>
+          {type === "CNN" ? "Select multiple keywords to see the number of times CNN has mentioned these keywords in their tweets per month" 
+          : "Select multiple keywords to see the number of times FOX has mentioned these keywords in their tweets per month"}
+        </Typography>
+      </Box>
       <Autocomplete
         sx={{
           mb: 3

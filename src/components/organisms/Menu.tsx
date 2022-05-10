@@ -19,7 +19,7 @@ const Menu: FC<MenuProps> = (props) => {
     <>
       <Drawer
         container={container}
-        variant="temporary"
+        variant="persistent"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
@@ -35,7 +35,7 @@ const Menu: FC<MenuProps> = (props) => {
         <MenuLink to="/data" label="Data" icon={<Assignment />} />
       </Drawer>
       <Drawer
-        variant="permanent"
+        variant="persistent"
         sx={{
           display: { xs: "none", sm: "block" },
           "& .MuiDrawer-paper": { boxSizing: "border-box", padding: "10px", position: "relative" },

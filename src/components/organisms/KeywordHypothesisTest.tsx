@@ -81,8 +81,13 @@ const KeywordHypothesisTest: FC<HypothesisTest> = (props) => {
   return (
     <InteractiveComponentWrapper>
       <Box sx={{mb: 5}}>
-        <Typography variant="h4"  sx={{fontWeight: 700, display:"flex", alignItems:"center" }}>Keyword Analysis</Typography>
-        <Typography variant="body1" color="secondary"  sx={{display:"flex", alignItems:"center" }}>Select a keyword to see if using that keyword would yield a statistically significant result! Alpha value used is 0.05.</Typography>
+        <Typography variant="h4"  sx={{fontWeight: 700, display:"flex", alignItems:"center" }}>
+          {type === "hypothesis1" ? "Keyword Frequency Analysis" : "Virality Analysis"}
+        </Typography>
+        <Typography variant="body1" color="secondary"  sx={{display:"flex", alignItems:"center" }}>
+          {type === "hypothesis1" ? "Select a keyword to see if using that keyword is being used more/less frequently between CNN and Fox! Alpha value used is 0.05." 
+          : "Select a keyword to see if using that keyword has correlation with virality of a tweet! Alpha value used is 0.05."}
+        </Typography>
       </Box>
      
       <FormControl component="fieldset">
@@ -153,8 +158,8 @@ const KeywordHypothesisTest: FC<HypothesisTest> = (props) => {
             }}
           >
             {isSignificant(getPValue(currentKeyword))
-              ? "Significant"
-              : "Not Significant"}
+              ? type == "hypothesis1" ? "Different" : "Viral"
+              : type == "hypothesis1" ? "Not different": "Not Viral"}
           </Typography>
         </Typography>
       <Typography variant="h6">{comment()}</Typography>
