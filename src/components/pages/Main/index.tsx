@@ -2,6 +2,7 @@ import { Box, FormControl, Typography, Select, MenuItem, Paper, Divider } from '
 import React, { FC } from 'react'
 import { TweetData } from '../../../api/TweetData';
 import Description from '../../molecules/Description';
+import CreateYourTweet from '../../organisms/CreateYourTweet';
 import FrequencyGraph from '../../organisms/FrequencyGraph';
 import KeywordHypothesisTest from '../../organisms/KeywordHypothesisTest';
 import SentimentClass from '../../organisms/SentimentClass';
@@ -147,7 +148,7 @@ const Main:FC = () => {
           <br/>
           <br/>
         </Typography>
-        
+        <CreateYourTweet/>
       </Box>
     </Box>
     

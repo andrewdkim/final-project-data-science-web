@@ -50,7 +50,6 @@ const SentimentGraph:FC = () => {
     if (sentence.length !== 0) {
       TweetData.getSentiment(sentence).then(data => {
         if (data) {
-          
           setData(data)
         }
       }).catch(e => {
