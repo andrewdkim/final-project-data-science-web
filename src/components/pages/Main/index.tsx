@@ -18,6 +18,9 @@ const Main:FC = () => {
         <img style={{width: "100%", maxWidth: "400px"}} src="logo.png"/>
         <Typography variant="body1" sx={{fontWeight: 700, color: "GrayText", marginTop: "12px"}}>CSCI1951A Data Science Capstone Project</Typography>
       </Box>
+      <Box sx={{display: "flex", justifyContent: "center", alignItems:"center"}}>
+      <img style={{width: "100%", maxWidth: "400px"}} src="https://media.giphy.com/media/UVqhzNsYWIelUBV7zN/giphy.gif"/>
+      </Box>
       <Box sx={{my:5}}>
         <Typography variant="h4" sx={{fontWeight: 700, marginBottom:"12px"}}>Motivation</Typography>
         <Typography variant="h6">
