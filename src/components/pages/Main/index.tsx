@@ -144,7 +144,7 @@ const Main:FC = () => {
           Time to make your own Covid related Tweet! This fun interactive component allows you to create a component and allows you to predict how viral your tweet will be. Just write out a text, choose hashtags, and check your virality score.
           <br/>
           <br/>
-          The virality score is determined by the keywords / hashtags that you choose, as well as the sentiment of your sentence.
+          The virality score is predicted by the keywords / hashtags that you choose, as well as the sentiment of your sentence. Virality score of a tweet is defined as reply_count + retweet_count + like_count + quote_count. To predict virality score, we calculated the average virality score of Tweets from CNN and FOX using for each keyword. Each keyword is then averaged and multiplier is applied based on your sentiment score.
           <br/>
           <br/>
         </Typography>

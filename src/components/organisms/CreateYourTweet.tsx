@@ -8,6 +8,7 @@ const CreateYourTweet:FC = () => {
   const allKeywords:string[] = TweetData.getAllFrequencyKeywords("CNN")
   const [value, setValue] = useState<string[]>([]);
   const [sentence, setSentence] = useState<string>("");
+  const [score, setScore] = useState<number>();
   const colors = ["#1DA1F2"] 
 
   const onTextChange = (e:any) => {
@@ -18,12 +19,70 @@ const CreateYourTweet:FC = () => {
     if (sentence.length !== 0) {
       TweetData.getSentiment(sentence).then(data => {
         if (data) {
-          // setData(data)
+          let maxScore = -Infinity;
+          let category = "";
+          let multiplier = 1;
+          data?.forEach((item) => {
+            if (item.score > maxScore) {
+              maxScore = item.score;
+              category = item.label;
+            }
+          });
+          console.log(category)
+          if (category == "Positive" || category == "Negative") {
+            multiplier += maxScore
+          }
+          const viralities = TweetData.getAverageViralities(value);
+          let summation = 400
+          Object.keys(viralities).forEach(key => {
+            summation += viralities[key] as number
+          });
+          if (Object.keys(viralities).length === 0) {
+            setScore((summation) * multiplier)
+          } else {
+            setScore((summation / Object.keys(viralities).length) * multiplier)
+          }
         }
       }).catch(e => {
         console.log(e)
       })
     }
+  }
+
+  const getViralityCategory = () => {
+    if (score) { 
+      if (score >= 2000) { 
+        return "Very Viral"
+      } else if (score >= 1800) { 
+        return "Viral";
+      } else if (score >= 1600) { 
+        return "Somewhat Viral";
+      }
+    }
+    return "Not Viral"
+  }
+
+  const isViral = () => {
+    if (score) { 
+      if (score >= 1600) { 
+        return true;
+      }
+    }
+    return false;
+  }
+
+  const getGifURL = () => {
+    if (isViral()) {
+      return "https://media.giphy.com/media/l378AXODb74RlihFK/giphy.gif"
+    }
+    return "https://media.giphy.com/media/xUOxeYGfFzybpBTazC/giphy.gif"
+  }
+
+  const comment = () => {
+    if (isViral()) { 
+      return "Congrats! According to our algorithm, your tweet could be viral!"
+    }
+    return "Hmm... it seems like your tweet might not do very well. Try again!"
   }
 
 
@@ -73,6 +132,40 @@ const CreateYourTweet:FC = () => {
         )}
       />
       <Button variant="contained" onClick={analyze}>Check Virality</Button>
+      {score && (
+        <>
+        <Box sx={{display: "flex", flexWrap: "wrap", mt:3}}>
+        <Typography variant="h5" sx={{ display: "flex", alignItems: "center"}}>
+          Result: &nbsp;{" "}
+        </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: 700,
+            color: isViral()
+              ? "#A5CB43"
+              : "#808080",
+          }}
+        >
+          {getViralityCategory()}
+          </Typography>
+
+          </Box>
+        <Typography variant="h6">{comment()}</Typography>
+
+          <Box
+              sx={{
+                mt: 4,
+                mb: 2,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img style={{ width: "100%", maxWidth: "350px" }} src={getGifURL()} />
+            </Box>
+        </>
+      )}
     </InteractiveComponentWrapper>
   )
 }

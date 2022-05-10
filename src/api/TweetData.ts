@@ -5,6 +5,7 @@ const hypothesis1Data = require("../hypothesis1.json")
 const hypothesis3Data = require("../hypothesis3.json")
 const foxKeywordFreq = require("../fox_keyword_freq.json")
 const cnnKeywordFreq = require("../cnn_keyword_freq.json")
+const keywordAverageVirality = require("../keyword_average_virality.json")
 export type typeOfData = "inputs" | "outputs";
 
 interface Tweet { 
@@ -69,6 +70,19 @@ interface AnnotatedKVPTable {
 }
 
 export namespace TweetData {
+
+  export const getAllKeywords = () => {
+    return Object.keys(keywordAverageVirality)
+  }
+
+  export const getAverageViralities = (keywords: string[]) => {
+    const result:any = {}
+    keywords.forEach(keyword => {
+      result[keyword] = keywordAverageVirality[keyword]
+    })
+    return result;
+  }
+
 
   export const getHypothesisKeywords = (type: "hypothesis1" | "hypothesis3") => {
     switch (type) {
