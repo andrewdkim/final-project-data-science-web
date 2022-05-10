@@ -67,7 +67,7 @@ const CreateYourTweet:FC = () => {
             />
           ))
         }
-        style={{ width: 500 }}
+        style={{ width: "100%" }}
         renderInput={(params) => (
           <TextField {...params} label="Hashtags" placeholder="Add More Hashtags" fullWidth/>
         )}

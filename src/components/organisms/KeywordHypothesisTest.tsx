@@ -89,12 +89,13 @@ const KeywordHypothesisTest: FC<HypothesisTest> = (props) => {
           : "Select a keyword to see if using that keyword has correlation with virality of a tweet! Alpha value used is 0.05."}
         </Typography>
       </Box>
-     
       <FormControl component="fieldset">
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
+            flexWrap: "wrap",
+            mb: 2,
           }}
         >
           <Typography>Select a keyword: &nbsp;</Typography>
@@ -116,8 +117,7 @@ const KeywordHypothesisTest: FC<HypothesisTest> = (props) => {
       </FormControl>
       <ResponsiveContainer width="100%" height={120}>
         <BarChart
-          width={730}
-          height={150}
+          height={120}
           layout="vertical"
           data={[
             {
@@ -146,12 +146,16 @@ const KeywordHypothesisTest: FC<HypothesisTest> = (props) => {
       </Typography>
 
       <Box mt={5}>
-        <Typography variant="h5" sx={{ display: "flex", alignItems: "center" }}>
-          Result: &nbsp;{" "}
+        <Box sx={{display: "flex", flexWrap: "wrap"}}>
+          <Typography variant="h5" sx={{ display: "flex", alignItems: "center"}}>
+            Result: &nbsp;{" "}
+          </Typography>
+
           <Typography
             variant="h4"
             sx={{
               fontWeight: 700,
+
               color: isSignificant(getPValue(currentKeyword))
                 ? "#A5CB43"
                 : "#808080",
@@ -161,7 +165,7 @@ const KeywordHypothesisTest: FC<HypothesisTest> = (props) => {
               ? type == "hypothesis1" ? "Different" : "Viral"
               : type == "hypothesis1" ? "Not different": "Not Viral"}
           </Typography>
-        </Typography>
+        </Box>
       <Typography variant="h6">{comment()}</Typography>
       </Box>
     </InteractiveComponentWrapper>

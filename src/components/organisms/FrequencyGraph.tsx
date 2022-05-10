@@ -62,13 +62,13 @@ const FrequencyGraph:FC<FrequencyGraphProps> = (props) => {
             />
           ))
         }
-        style={{ width: 500 }}
+        style={{ maxWidth: 500, width: "100%" }}
         renderInput={(params) => (
           <TextField {...params} label="Keyword Tags" placeholder="Add More Keywords" fullWidth/>
         )}
       />
       <ResponsiveContainer width="100%" height={500} >
-          <LineChart width={500} height={300} data={parseData(value)}>
+          <LineChart height={500} data={parseData(value)}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" padding={{ left: 30, right: 30 }} tickSize={15} />
             <YAxis type="number"/>

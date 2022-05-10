@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import InteractiveComponentWrapper from '../molecules/InteractiveComponentWrapper';
-import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Box, Typography } from '@mui/material';
 
 
@@ -75,29 +75,32 @@ const SentimentClass:FC<SentimentClassProps> = (props) => {
           : "This pie chart shows the category of FOX posts organized by sentiment categories - positive, negative, and neutral" }
         </Typography>
       </Box>
-      <PieChart width={730} height={300} margin={{
-                  top: 5,
-                  right: 20,
-                  left: 20,
-                  bottom: 5,
-        }}>
-        <Pie 
-          data={data} 
-          dataKey="value" 
-          outerRadius={100}
-          nameKey="label" 
-          cx="50%" 
-          cy="50%" 
-          label={renderCustomizedLabel}
-        > 
+      <ResponsiveContainer width="100%" height={300}>
+        <PieChart height={300} margin={{
+            top: 5,
+            right: 20,
+            left: 20,
+            bottom: 5,
+          }}>
+          <Pie 
+            data={data} 
+            dataKey="value" 
+            outerRadius={100}
+            nameKey="label" 
+            cx="50%" 
+            cy="50%" 
+            label={renderCustomizedLabel}
+          > 
 
-          {data.map((entry, index) => {
-            // @ts-ignore
-            return <Cell key={`cell-${index}`}  fill={colors[entry.label.toLowerCase()]} />
-          })}
-        </Pie>
-      </PieChart>
+            {data.map((entry, index) => {
+              // @ts-ignore
+              return <Cell key={`cell-${index}`}  fill={colors[entry.label.toLowerCase()]} />
+            })}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
     </InteractiveComponentWrapper>
+    
   )
 }
 

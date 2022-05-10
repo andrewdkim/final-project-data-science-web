@@ -1,4 +1,4 @@
-import { Box, FormControl, Typography, Select, MenuItem, Paper, Divider } from '@mui/material'
+import { Box, FormControl, Typography, Select, MenuItem, Paper, Divider, useTheme } from '@mui/material'
 import React, { FC } from 'react'
 import { TweetData } from '../../../api/TweetData';
 import Description from '../../molecules/Description';
@@ -10,12 +10,12 @@ import SentimentGraph from '../../organisms/SentimentGraph';
 
 
 const Main:FC = () => {
-
+  const theme = useTheme();
 
   return (
-    <Box sx={{mx: 3, my: 3}}>
+    <Box sx={{mx: 3, my: 3, display: "flex", flexDirection:"column"}}>
       <Box sx={{display: "flex", alignItems: "center", justifyContent: "center", my: 5, flexDirection: "column"}}>
-        <img src="logo.png"/>
+        <img style={{width: "100%", maxWidth: "400px"}} src="logo.png"/>
         <Typography variant="body1" sx={{fontWeight: 700, color: "GrayText", marginTop: "12px"}}>CSCI1951A Data Science Capstone Project</Typography>
       </Box>
       <Box sx={{my:5}}>
