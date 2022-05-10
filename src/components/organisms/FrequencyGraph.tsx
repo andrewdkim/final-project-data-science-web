@@ -12,7 +12,7 @@ export interface FrequencyGraphProps {
 const FrequencyGraph:FC<FrequencyGraphProps> = (props) => {
   const {type} = props
   const allKeywords:string[] = TweetData.getAllFrequencyKeywords(type)
-  const [value, setValue] = useState([allKeywords[13]]);
+  const [value, setValue] = useState(["pandemic", "trump"]);
   const colors = ["#F65247", "#F0AD28", "#F4DC39", "#A5CB43", "#52AFE6", "#565BAF"] 
   const parseData = (keywords:string[]) => {
     const data = TweetData.getFrequencyPerKeyword(type, keywords)
