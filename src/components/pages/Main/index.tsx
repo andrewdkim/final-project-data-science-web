@@ -5,6 +5,7 @@ import Description from '../../molecules/Description';
 import CreateYourTweet from '../../organisms/CreateYourTweet';
 import FrequencyGraph from '../../organisms/FrequencyGraph';
 import KeywordHypothesisTest from '../../organisms/KeywordHypothesisTest';
+import ProportionGraph from '../../organisms/ProportionGraph';
 import SentimentClass from '../../organisms/SentimentClass';
 import SentimentGraph from '../../organisms/SentimentGraph';
 
@@ -58,20 +59,18 @@ const Main:FC = () => {
       <Box sx={{my:5}}>
         <Typography variant="h4" sx={{fontWeight: 700, marginBottom:"12px"}}>Hypothesis 1</Typography>
         <Typography variant="h6" >
-          Question: Are there differences between how CNN tweets about COVID vs how Fox tweets about COVID?"
+          Question: "Does CNN focus more on certain keywords more than Fox?"" 
           <br/>
           <br/>
-          Null Hypothesis: There is no significant difference in mean frequency of a specific keyword being used in a tweet between CNN and Fox news.
+          Null Hypothesis: "There is no difference in the population proportion between Fox News and CNN for tweets that contain some certain keyword."
           <br/>
           <br/>
-          We can evaluate this question by answering if CNN uses particular keywords more frequently in their tweets than Fox, and vice versa. We used a independent Two Sample T Test to determine this. 
-          <br/>
-          <br/>
-          In the interactive component below, try inputting different keywords and see if that a specific keyword is being used more / less by a particular news source. We recommend trying words such as "antibody" and "N95".
+          ???
           <br/>
           <br/>
         </Typography>
-        <KeywordHypothesisTest type="hypothesis1"/>
+        <ProportionGraph/>
+        {/* <KeywordHypothesisTest type="hypothesis4"/> */}
       </Box>
 
       <Box sx={{my:5}}>
@@ -113,6 +112,24 @@ const Main:FC = () => {
           <br/>
         </Typography>
         <KeywordHypothesisTest type="hypothesis3"/>
+      </Box>
+      <Box sx={{my:5}}>
+        <Typography variant="h4" sx={{fontWeight: 700, marginBottom:"12px"}}>Hypothesis 4</Typography>
+        <Typography variant="h6" >
+          Question: Are there differences between how CNN tweets about COVID vs how Fox tweets about COVID?"
+          <br/>
+          <br/>
+          Null Hypothesis: There is no significant difference in mean frequency of a specific keyword being used in a tweet between CNN and Fox news.
+          <br/>
+          <br/>
+          We can evaluate this question by answering if CNN uses particular keywords more frequently in their tweets than Fox, and vice versa. We used a independent Two Sample T Test to determine this. 
+          <br/>
+          <br/>
+          In the interactive component below, try inputting different keywords and see if that a specific keyword is being used more / less by a particular news source. We recommend trying words such as "antibody" and "N95".
+          <br/>
+          <br/>
+        </Typography>
+        <KeywordHypothesisTest type="hypothesis4"/>
       </Box>
       <Divider/>
       <Box sx={{my:5}}>

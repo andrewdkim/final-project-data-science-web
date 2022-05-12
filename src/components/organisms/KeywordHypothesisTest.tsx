@@ -21,13 +21,13 @@ import { TweetData } from "../../api/TweetData";
 import InteractiveComponentWrapper from "../molecules/InteractiveComponentWrapper";
 
 export interface HypothesisTest {
-  type: "hypothesis1" | "hypothesis3";
+  type: "hypothesis4" | "hypothesis3";
 }
 
 const KeywordHypothesisTest: FC<HypothesisTest> = (props) => {
   const { type } = props;
   const variables = TweetData.getHypothesisKeywords(type);
-  const [currentKeyword, setCurrentKeyword] = useState<string>(type == "hypothesis1" ? "emergency use authorization" : "booster");
+  const [currentKeyword, setCurrentKeyword] = useState<string>(type == "hypothesis4" ? "emergency use authorization" : "booster");
   const onChange = (e: any) => {
     setCurrentKeyword(e.target.value);
   };
@@ -68,7 +68,7 @@ const KeywordHypothesisTest: FC<HypothesisTest> = (props) => {
 
   const comment = () => {
     const significant = isSignificant(getPValue(currentKeyword));
-    if (type === "hypothesis1") {
+    if (type === "hypothesis4") {
       return significant
         ? "P-value is lower than 0.05 so we reject the null hypothesis. It's likelly that CNN uses this keyword more/less frequently than Fox."
         : "P-value is higher than 0.05 so we fail to reject the null hypothesis. There seems to be no difference in frequency of this keyword being used between CNN and Fox";
@@ -81,10 +81,10 @@ const KeywordHypothesisTest: FC<HypothesisTest> = (props) => {
     <InteractiveComponentWrapper>
       <Box sx={{mb: 5}}>
         <Typography variant="h4"  sx={{fontWeight: 700, display:"flex", alignItems:"center" }}>
-          {type === "hypothesis1" ? "Keyword Frequency Analysis" : "Virality Analysis"}
+          {type === "hypothesis4" ? "Keyword Frequency Analysis" : "Virality Analysis"}
         </Typography>
         <Typography variant="body1" color="secondary"  sx={{display:"flex", alignItems:"center" }}>
-          {type === "hypothesis1" ? "Select a keyword to see if using that keyword is being used more/less frequently between CNN and Fox! Alpha value used is 0.05." 
+          {type === "hypothesis4" ? "Select a keyword to see if using that keyword is being used more/less frequently between CNN and Fox! Alpha value used is 0.05." 
           : "Select a keyword to see if using that keyword has correlation with virality of a tweet! Alpha value used is 0.05."}
         </Typography>
       </Box>
@@ -161,8 +161,8 @@ const KeywordHypothesisTest: FC<HypothesisTest> = (props) => {
             }}
           >
             {isSignificant(getPValue(currentKeyword))
-              ? type == "hypothesis1" ? "Different" : "Viral"
-              : type == "hypothesis1" ? "Not different": "Not Viral"}
+              ? type == "hypothesis4" ? "Different" : "Viral"
+              : type == "hypothesis4" ? "Not different": "Not Viral"}
           </Typography>
         </Box>
       <Typography variant="h6">{comment()}</Typography>

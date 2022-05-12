@@ -1,8 +1,9 @@
 import { Point } from "../types";
 import axios from 'axios';
 const cnn_replies = require("../cnn_replies_clean.json")
-const hypothesis1Data = require("../hypothesis1.json")
+const hypothesis4Data = require("../hypothesis4.json")
 const hypothesis3Data = require("../hypothesis3.json")
+const hypothesis1Data = require("../hypothesis1.json")
 const foxKeywordFreq = require("../fox_keyword_freq.json")
 const cnnKeywordFreq = require("../cnn_keyword_freq.json")
 const keywordAverageVirality = require("../keyword_average_virality.json")
@@ -25,30 +26,6 @@ interface Tweet {
   quoteCount: number
   month: string,
   keywords: string[]
-
-  // "url": "https://twitter.com/CNN/status/1223028844300554248",
-  //       "date": "2020-01-30T23:42:53+00:00",
-  //       "id": "1223028844300554248",
-  //       "lang": "en",
-  //       "outlinks": [
-  //           "https://cnn.it/2RGIenx"
-  //       ],
-  //       "hashtags": null,
-  //       "news_outlet": "CNN",
-  //       "author_id": "759251",
-  //       "conversation_id": "1223028844300554248",
-  //       "text": "The death toll in mainland China from the Wuhan coronavirus stands at 213 https://t.co/GmiLdxMhpt",
-  //       "reply_count": 31,
-  //       "retweet_count": 174,
-  //       "like_count": 247,
-  //       "quote_count": 26,
-  //       "month": "January 2020",
-  //       "keywords": [
-  //           "death toll",
-  //           "death",
-  //           "wuhan",
-  //           "china"
-  //       ]
 }
 
 interface KVP {
@@ -71,6 +48,22 @@ interface AnnotatedKVPTable {
 
 export namespace TweetData {
 
+  export const getAllProportionKeywords = () => {
+    return Object.keys(hypothesis1Data);
+  }
+
+  export const getProportion = (keywords: string[]) => {
+    return keywords.map(keyword => {
+      const datum = hypothesis1Data[keyword]
+      return {
+        "keyword": keyword,
+        "cnn_prop": datum["cnn prop"],
+        "fox_prop" : datum["fox_prop"]
+      }
+    })
+  }
+
+
   export const getAllKeywords = () => {
     return Object.keys(keywordAverageVirality)
   }
@@ -84,19 +77,19 @@ export namespace TweetData {
   }
 
 
-  export const getHypothesisKeywords = (type: "hypothesis1" | "hypothesis3") => {
+  export const getHypothesisKeywords = (type: "hypothesis4" | "hypothesis3") => {
     switch (type) {
-      case "hypothesis1":
-        return Object.keys(hypothesis1Data)
+      case "hypothesis4":
+        return Object.keys(hypothesis4Data)
       case "hypothesis3":
         return Object.keys(hypothesis3Data)
     }
   }
 
-  export const getHypothesisKeywordStats = (type: "hypothesis1" | "hypothesis3", keyword: string) => {
+  export const getHypothesisKeywordStats = (type: "hypothesis4" | "hypothesis3", keyword: string) => {
     switch (type) {
-      case "hypothesis1":
-        return hypothesis1Data[keyword]
+      case "hypothesis4":
+        return hypothesis4Data[keyword]
       case "hypothesis3":
         return hypothesis3Data[keyword]
     }
