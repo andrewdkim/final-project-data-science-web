@@ -1,9 +1,8 @@
 import { Point } from "../types";
 import axios from 'axios';
-const cnn_replies = require("../cnn_replies_clean.json")
 const hypothesis4Data = require("../hypothesis4.json")
-const hypothesis3Data = require("../hypothesis3.json")
-const hypothesis1Data = require("../hypothesis1.json")
+const hypothesis3Data = require("../hypothesis_3.json")
+const hypothesis1Data = require("../hypothesis_1.json")
 const foxKeywordFreq = require("../fox_keyword_freq.json")
 const cnnKeywordFreq = require("../cnn_keyword_freq.json")
 const keywordAverageVirality = require("../keyword_average_virality.json")
@@ -153,42 +152,5 @@ export namespace TweetData {
       output[key] = freqPerMonth;
     })
     return output
-  }
-
-  export const parseTweets = () => {
-    return cnn_replies.map((tweet: any) => {
-      return {
-        url: tweet["url"],
-        date: tweet["date"],
-        id: tweet["url"],
-        lang: tweet["lang"],
-        outlinks: tweet["outlinks"],
-        hashtags: tweet["hashtags"],
-        news_outlet: tweet["news_outlet"],
-        authorid: tweet["author_id"],
-        conversationid: tweet["conversation_id"],
-        text: tweet["text"],
-        replyCount: tweet["reply_count"],
-        retweetCount: tweet["retweet_count"],
-        likeCount: tweet["like_count"],
-        quoteCount: tweet["quote_count"],
-        month: tweet["month"],
-        keywords: tweet["keywords"]
-      } as Tweet
-    }) as Tweet[]
-  }
-
-  export const getAnnotatedTweets = () => {
-    const tweets = parseTweets()
-    const data: AnnotatedKVPTable[] = [];
-    return tweets.map(tweet => {
-      const {id, ...rest} = tweet
-      const data = (Object.keys(rest) as Array<keyof typeof rest>).map(key => {
-        return (
-          {key, value: rest[key]}
-        )
-      })
-      return {name: id, data}
-    }) as AnnotatedKVPTable[]
   }
 }

@@ -5,7 +5,7 @@ import Button from "../atoms/Button";
 import InteractiveComponentWrapper from "../molecules/InteractiveComponentWrapper";
 
 const CreateYourTweet:FC = () => {
-  const allKeywords:string[] = TweetData.getAllFrequencyKeywords("CNN")
+  const allKeywords:string[] = TweetData.getAllKeywords()
   const [value, setValue] = useState<string[]>([]);
   const [sentence, setSentence] = useState<string>("");
   const [score, setScore] = useState<number>();
