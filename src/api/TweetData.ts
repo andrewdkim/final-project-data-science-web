@@ -63,6 +63,13 @@ export namespace TweetData {
     })
   }
 
+  export const getConfidence = (keyword: string) => {
+    return [
+      hypothesis1Data[keyword]["conf lower bound"],
+      hypothesis1Data[keyword]["conf upper bound"]
+    ]
+  }
+
 
   export const getAllKeywords = () => {
     return Object.keys(keywordAverageVirality)

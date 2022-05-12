@@ -1,7 +1,6 @@
 import { Box, FormControl, Typography, Select, MenuItem, Paper, Divider, useTheme } from '@mui/material'
 import React, { FC } from 'react'
-import { TweetData } from '../../../api/TweetData';
-import Description from '../../molecules/Description';
+import ConfidenceHypothesisTest from '../../organisms/ConfidenceHypothesisTest';
 import CreateYourTweet from '../../organisms/CreateYourTweet';
 import FrequencyGraph from '../../organisms/FrequencyGraph';
 import KeywordHypothesisTest from '../../organisms/KeywordHypothesisTest';
@@ -65,12 +64,17 @@ const Main:FC = () => {
           Null Hypothesis: "There is no difference in the population proportion between Fox News and CNN for tweets that contain some certain keyword."
           <br/>
           <br/>
-          ???
+          We first found the percentage/proportion of news tweets from the sample that contain that particular keyword for both CNN and Fox. With these two proportions (one for CNN and one for Fox), and using the news tweet sample sizes, we then calculated a two proportion z-interval to estimate the difference between the two population proportions. 
+          <br/>
+          <br/>
+          We reject the null hypothesis if the confidence interval that we calculate does not contain 0. For significance level of .05, we reject the null hypothesis for "biden", "cuomo", "fauci", and "vaccine". Interestingly, when Fox has tweeted about COVID, the keyword "biden" shows up in 12% of their tweets, whereas for CNN, "biden" has appeared only 5% of the time. 
           <br/>
           <br/>
         </Typography>
+        <ConfidenceHypothesisTest/>
+      </Box>
+      <Box sx={{my:5}}>
         <ProportionGraph/>
-        {/* <KeywordHypothesisTest type="hypothesis4"/> */}
       </Box>
 
       <Box sx={{my:5}}>
@@ -113,7 +117,7 @@ const Main:FC = () => {
         </Typography>
         <KeywordHypothesisTest type="hypothesis3"/>
       </Box>
-      <Box sx={{my:5}}>
+      {/* <Box sx={{my:5}}>
         <Typography variant="h4" sx={{fontWeight: 700, marginBottom:"12px"}}>Hypothesis 4</Typography>
         <Typography variant="h6" >
           Question: Are there differences between how CNN tweets about COVID vs how Fox tweets about COVID?"
@@ -130,7 +134,7 @@ const Main:FC = () => {
           <br/>
         </Typography>
         <KeywordHypothesisTest type="hypothesis4"/>
-      </Box>
+      </Box> */}
       <Divider/>
       <Box sx={{my:5}}>
         <Typography variant="h4" sx={{fontWeight: 700, marginBottom:"12px"}}>Visualization 1: Monthly frequency of Keywords</Typography>
