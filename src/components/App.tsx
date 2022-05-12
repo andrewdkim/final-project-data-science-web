@@ -1,7 +1,6 @@
 import { Box, Container } from "@mui/material";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Menu from "./organisms/Menu";
 import Main from "./pages/Main";
 
 function App() {
