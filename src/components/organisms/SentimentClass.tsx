@@ -22,7 +22,6 @@ const SentimentClass:FC<SentimentClassProps> = (props) => {
 
   //@ts-ignore
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index , label}) => {
-    console.log(label)
     const radius = innerRadius + (outerRadius - innerRadius) * 1.3;
     const x = cx + radius * Math.cos(-midAngle * Math.PI / 180);
     const y = cy + radius * Math.sin(-midAngle * Math.PI / 180);

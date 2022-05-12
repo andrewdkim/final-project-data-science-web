@@ -54,7 +54,6 @@ const KeywordHypothesisTest: FC<HypothesisTest> = (props) => {
   const CustomTooltip = (props: any) => {
     const { active, payload, label } = props;
     if (active && payload && payload.length) {
-      console.log(payload[0]["payload"]["label"]);
       return (
         <Paper sx={{ padding: "5px 5px" }}>
           <Typography>{`${"P-value"} : ${expo(

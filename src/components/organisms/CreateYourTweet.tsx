@@ -28,7 +28,6 @@ const CreateYourTweet:FC = () => {
               category = item.label;
             }
           });
-          console.log(category)
           if (category == "Positive" || category == "Negative") {
             multiplier += maxScore
           }
@@ -44,7 +43,6 @@ const CreateYourTweet:FC = () => {
           }
         }
       }).catch(e => {
-        console.log(e)
       })
     }
   }

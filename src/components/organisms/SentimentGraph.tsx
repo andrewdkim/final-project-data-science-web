@@ -75,7 +75,6 @@ const SentimentGraph: FC = () => {
           }
         })
         .catch((e) => {
-          console.log(e);
         });
     }
   };
@@ -131,7 +130,6 @@ const SentimentGraph: FC = () => {
               <Tooltip />
               <Bar dataKey="score" fill="#8884d8">
                 {data?.map((row) => {
-                  console.log(row["label"]);
                   return (
                     <Cell
                       key={`cell-${row["label"]}`}

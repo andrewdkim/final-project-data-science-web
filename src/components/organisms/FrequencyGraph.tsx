@@ -24,7 +24,6 @@ const FrequencyGraph:FC<FrequencyGraphProps> = (props) => {
     })
   }
 
-  console.log(parseData(value))
 
   return ( 
     <InteractiveComponentWrapper>
@@ -75,7 +74,6 @@ const FrequencyGraph:FC<FrequencyGraphProps> = (props) => {
             <Tooltip />
             <Legend />
             {value.map((keyword) => {
-              console.log(colors.length % value.indexOf(keyword))
               return <Line type="monotone" stroke={colors[value.indexOf(keyword) % colors.length]} strokeWidth={2} dataKey={keyword} activeDot={{ r: 5 }} />
             })}
           </LineChart>
